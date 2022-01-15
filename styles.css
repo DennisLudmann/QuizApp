@@ -1,0 +1,41 @@
+.background-lightpink {
+    background-color: rgb(254, 250, 239);
+}
+
+.background-blue {
+    background-color: rgb(39, 53, 92);
+
+}
+
+.background-lightgray {
+    background-color: rgb(247, 247, 247);
+
+}
+
+.container-quiz {
+    display: flex;
+    justify-content: center;
+}
+
+.card-quiz {
+    width: 28em;
+}
+
+.footer-quiz{
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    border-top: 0.4px solid rgba(0, 0, 0, 0.2);
+}
+
+.img_card{
+    height: 13em;
+    object-fit: cover;
+}
+
+.answer-quiz:hover{
+    cursor: pointer;
+    background-color: rgba(39, 53, 92, 0.1);
+
+}
