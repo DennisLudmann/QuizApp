@@ -20,35 +20,36 @@
       <img src="img/itay2.jpg" class="card-img-top img_card" alt="...">
       <div class="card-body">
         <h5 class="card-title" id="question_text">Frage</h5>
-        <div class="card mb-2">
-          <div class="answer-quiz card-body" id="answer_1" onclick="answer(answer_1)">
+        
+        <div class="answer-quiz card mb-2"  onclick="answer('answer_1')">
+           <div class=" card-body" id="answer_1">
             Antwort 1
           </div>
         </div>
 
-        <div class="answer-quiz card mb-2">
-          <div class="card-body" id="answer_2" onclick="answer(answer_2)">
+        <div class="answer-quiz card mb-2" onclick="answer('answer_2')">
+          <div class="card-body" id="answer_2">
             Antwort 2
           </div>
         </div>
 
-        <div class="answer-quiz card mb-2">
-          <div class="card-body" id="answer_3" onclick="answer(answer_3)">
+        <div class="answer-quiz card mb-2" onclick="answer('answer_3')">
+          <div class="card-body" id="answer_3" >
             Antwort 3
           </div>
         </div>
 
-        <div class="answer-quiz card mb-2">
-          <div class="card-body" id="answer_4"onclick="answer(answer_4)">
+        <div class="answer-quiz card mb-2" onclick="answer('answer_4')">
+          <div class="card-body" id="answer_4">
             Antwort 4
           </div>
         </div>
       </div>
       <div class="footer-quiz ms-4 me-3">
         <span>
-          Frage <b>1</b> von <b id="questions_counter">2</b>
+          Frage <b id="questions_counter_start">1</b> von <b id="questions_counter">2</b>
         </span>
-        <button onclick="nextQuestion(1)" type="button" class="btn btn-primary">Next Question</button>
+        <button id="next-button" disabled onclick="nextQuestion()" type="button" class="btn btn-primary background-blue">Next Question</button>
       </div>
     </div>
     

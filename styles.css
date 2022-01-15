@@ -4,12 +4,26 @@
 
 .background-blue {
     background-color: rgb(39, 53, 92);
+    border-color: rgb(39, 53, 92);
+    color: white;
 
 }
 
 .background-lightgray {
     background-color: rgb(247, 247, 247);
 
+}
+
+.bg-success {
+    color: white;
+
+    --bs-bg-opacity: 0.8;
+}
+
+.bg-danger {
+    color: white;
+
+    --bs-bg-opacity: 0.8;
 }
 
 .container-quiz {
@@ -21,20 +35,20 @@
     width: 28em;
 }
 
-.footer-quiz{
+.footer-quiz {
     padding-top: 8px;
     display: flex;
-    justify-content: space-between;   
+    justify-content: space-between;
     align-items: center;
     border-top: 0.4px solid rgba(0, 0, 0, 0.2);
 }
 
-.img_card{
+.img_card {
     height: 13em;
     object-fit: cover;
 }
 
-.answer-quiz:hover{
+.answer-quiz:hover {
     cursor: pointer;
     background-color: rgba(39, 53, 92, 0.1);
 
