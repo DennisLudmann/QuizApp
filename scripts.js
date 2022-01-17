@@ -32,7 +32,7 @@ let questions = [{
 	"right_answer": "1"
 },
 {
-	"question": "If someone said 'Addio,' what would they mean?",
+	"question": "What does 'Addio,' mean?",
 	"answer_1": "Goodflight",
 	"answer_2": "Goodbye",
 	"answer_3": "Adidasshoes",
@@ -42,6 +42,7 @@ let questions = [{
 
 ];
 
+let = rightQuestion = 0;
 let currentQuest = 0;
 
 function init() {
@@ -52,11 +53,22 @@ function init() {
 
 
 function displayQuestion() {
-
+	// Show End Screen
 	if (currentQuest >= questions.length){
-		document.getElementById('quiz-end').style = '';
-		document.getElementById('quiz-question').style = 'display: none;';
+		document.getElementById('quiz-end').style = ''; 	// um den endscren anzuzeigen
+		document.getElementById('quiz-question').style = 'display: none;'; //um die quiz card verschwinden zu lassen
+
+		document.getElementById('questions_counter_final').innerHTML = questions.length;	//anzahl der Fragen aufm Endscreen
+		document.getElementById('questions_answer_final').innerHTML = rightQuestion;		// anzahl der richigen antworten aufm Endscreen (siehe answer(choice)"if")
 	} else {
+		// Show Question
+
+		let percent = currentQuest / questions.length;
+		percent = Math.round(percent * 100);
+		document.getElementById('progress-bar').innerHTML = `${percent}%`
+		document.getElementById('progress-bar').style = `width: ${percent}%`
+
+		console.log('Fortschritt:', percent);
 
 	let question = questions[currentQuest]; // questions ist oben das Json - currentQuestion ist global auf 0
 
@@ -81,6 +93,7 @@ function answer(choice) {	// ein Parameter wird in die funktion übergeben 'answ
 
 	if (selectedAnswerNumber == question['right_answer']) {// wenn die letzte Ziffer vom übergebenen Parameter == der richtigen Antwort ist dann "if"
 		document.getElementById(choice).classList.add('bg-success');
+		rightQuestion++;
 
 	} else {												// wenn sie nicht == ist dann "else"
 		document.getElementById(choice).classList.add('bg-danger');				// rot makiert weil antwort falsch ist
@@ -114,5 +127,15 @@ function HideResults() {
 	document.getElementById('answer_3').classList.remove('bg-success');
 	document.getElementById('answer_4').classList.remove('bg-danger');
 	document.getElementById('answer_4').classList.remove('bg-success');
+
+}
+
+function restart(){
+
+	document.getElementById('quiz-end').style = 'display: none;'; 
+	document.getElementById('quiz-question').style = '';
+	rightQuestion = 0;
+	currentQuest = 0;
+	init();
 
 }

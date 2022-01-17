@@ -14,20 +14,31 @@
 </head>
 
 <body onload="init()" class="background">
-
+  <nav class="navbar navbar-light bg-light">
+    <div class="container ajusted" style="justify-content: start;">
+      <span class="ps-4"><h3>QuizApp</h3></span>
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" class="logo-new" class="pe-5">
+      </a>
+    </div>
+  </nav>
   <div class="container container-quiz mt-3">
 
     <div class="card card-quiz" id="quiz-end" style="display: none;">
 
       <div>
-        <img src="img/italy1.jpg" class="card-img-top img_card" alt="...">
+       
+        <img src="img/italy1.jpg" class="card-img-top img_card"style="height: 20em;">
       </div>
       <div class="container pt-4">
+        <h5 class="align">The Quiz has ended - CONGRAZ!</h5>
         <img src="img/brain result.png" alt=""class="img-fluid">
         <SPAN class="ps-2">
-          The Quiz has ended - CONGRAZ!
-          You have XXX of xxxx correnct answers
+         
+          You have <b id="questions_answer_final"></b> of <b id="questions_counter_final"></b> correnct answers.
         </SPAN>
+        <div class="center-button"><button id="replay-button" onclick="restart()" type="button"
+          class="btn btn-primary background-blue">Play again!</button></div>
       </div>
      
      
@@ -37,7 +48,9 @@
 
     <div class="card card-quiz" id="quiz-question">
       <img src="img/itay2.jpg" class="card-img-top img_card" alt="...">
-
+      <div class="progress">
+        <div id="progress-bar" class="background-blue progress-bar" role="progressbar" ></div>
+      </div>
 
       <div class="card-body">
         <h5 class="card-title" id="question_text">Frage</h5>

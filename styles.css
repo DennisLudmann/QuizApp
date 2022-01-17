@@ -53,6 +53,40 @@
     background-color: rgba(39, 53, 92, 0.1);
 
 }
+
 .img-fluid {
     max-width: 25%;
+}
+
+.navbar {
+    min-height: 74px;
+    
+}
+.logo-new{
+position: absolute;
+top: 8px;
+height: 80px;
+overflow: auto;
+width: auto;
+margin-left: -60px;
+}
+
+.ajusted{
+flex-flow: row-reverse;
+
+}
+
+.card-body {
+        padding: 0.6rem;
+}
+
+.img_end_card {
+    height: 20em;
+}
+
+.center-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+
 }
