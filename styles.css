@@ -53,3 +53,6 @@
     background-color: rgba(39, 53, 92, 0.1);
 
 }
+.img-fluid {
+    max-width: 25%;
+}

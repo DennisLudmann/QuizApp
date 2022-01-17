@@ -53,9 +53,10 @@ function init() {
 
 function displayQuestion() {
 
-	if (currentQuest >= questions.length)
-		// END SCREAN
-} else {
+	if (currentQuest >= questions.length){
+		document.getElementById('quiz-end').style = '';
+		document.getElementById('quiz-question').style = 'display: none;';
+	} else {
 
 	let question = questions[currentQuest]; // questions ist oben das Json - currentQuestion ist global auf 0
 

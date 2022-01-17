@@ -16,13 +16,34 @@
 <body onload="init()" class="background">
 
   <div class="container container-quiz mt-3">
-    <div class="card card-quiz">
+
+    <div class="card card-quiz" id="quiz-end" style="display: none;">
+
+      <div>
+        <img src="img/italy1.jpg" class="card-img-top img_card" alt="...">
+      </div>
+      <div class="container pt-4">
+        <img src="img/brain result.png" alt=""class="img-fluid">
+        <SPAN class="ps-2">
+          The Quiz has ended - CONGRAZ!
+          You have XXX of xxxx correnct answers
+        </SPAN>
+      </div>
+     
+     
+    </div>
+
+
+
+    <div class="card card-quiz" id="quiz-question">
       <img src="img/itay2.jpg" class="card-img-top img_card" alt="...">
+
+
       <div class="card-body">
         <h5 class="card-title" id="question_text">Frage</h5>
-        
-        <div class="answer-quiz card mb-2"  onclick="answer('answer_1')">
-           <div class=" card-body" id="answer_1">
+
+        <div class="answer-quiz card mb-2" onclick="answer('answer_1')">
+          <div class=" card-body" id="answer_1">
             Antwort 1
           </div>
         </div>
@@ -34,7 +55,7 @@
         </div>
 
         <div class="answer-quiz card mb-2" onclick="answer('answer_3')">
-          <div class="card-body" id="answer_3" >
+          <div class="card-body" id="answer_3">
             Antwort 3
           </div>
         </div>
@@ -49,10 +70,11 @@
         <span>
           Frage <b id="questions_counter_start">1</b> von <b id="questions_counter">2</b>
         </span>
-        <button id="next-button" disabled onclick="nextQuestion()" type="button" class="btn btn-primary background-blue">Next Question</button>
+        <button id="next-button" disabled onclick="nextQuestion()" type="button"
+          class="btn btn-primary background-blue">Next Question</button>
       </div>
     </div>
-    
+
 
   </div>
 </body>
