@@ -45,6 +45,9 @@ let questions = [{
 let = rightQuestion = 0;
 let currentQuest = 0;
 
+let audio_success = new Audio('audio/success.mp3');
+let audio_fail = new Audio('audio/fail.mp3');
+
 function init() {
 
 	document.getElementById('questions_counter').innerHTML = questions.length;	// zeigt die Gesamtanzahl der Fragen an
@@ -53,22 +56,26 @@ function init() {
 
 
 function displayQuestion() {
-	// Show End Screen
-	if (currentQuest >= questions.length){
-		document.getElementById('quiz-end').style = ''; 	// um den endscren anzuzeigen
-		document.getElementById('quiz-question').style = 'display: none;'; //um die quiz card verschwinden zu lassen
-
-		document.getElementById('questions_counter_final').innerHTML = questions.length;	//anzahl der Fragen aufm Endscreen
-		document.getElementById('questions_answer_final').innerHTML = rightQuestion;		// anzahl der richigen antworten aufm Endscreen (siehe answer(choice)"if")
+	if (gameIsOver()) {
+		showEndScreen();
 	} else {
-		// Show Question
+		updateProgressBar();
+		updateToNextQuestion();
+	}
+}
 
-		let percent = currentQuest / questions.length;
-		percent = Math.round(percent * 100);
-		document.getElementById('progress-bar').innerHTML = `${percent}%`
-		document.getElementById('progress-bar').style = `width: ${percent}%`
+function gameIsOver(){
+	return currentQuest >= questions.length;
+}
 
-		console.log('Fortschritt:', percent);
+function updateProgressBar() {
+	let percent = currentQuest / questions.length;
+	percent = Math.round(percent * 100);
+	document.getElementById('progress-bar').innerHTML = `${percent}%`
+	document.getElementById('progress-bar').style = `width: ${percent}%`
+}
+function updateToNextQuestion() {
+
 
 	let question = questions[currentQuest]; // questions ist oben das Json - currentQuestion ist global auf 0
 
@@ -79,28 +86,39 @@ function displayQuestion() {
 	document.getElementById('answer_3').innerHTML = question['answer_3'];
 	document.getElementById('answer_4').innerHTML = question['answer_4'];
 
+	document.getElementById('cover').style = 'display: none;';
 }
+
+
+function showEndScreen() {
+	document.getElementById('quiz-end').style = ''; 	// um den endscren anzuzeigen
+	document.getElementById('quiz-question').style = 'display: none;'; //um die quiz card verschwinden zu lassen
+
+	document.getElementById('questions_counter_final').innerHTML = questions.length;	//anzahl der Fragen aufm Endscreen
+	document.getElementById('questions_answer_final').innerHTML = rightQuestion;		// anzahl der richigen antworten aufm Endscreen (siehe answer(choice)"if")
 }
+
+
+
 function answer(choice) {	// ein Parameter wird in die funktion übergeben 'answer_x'
 
-	let question = questions[currentQuest];					// currentQuestion ist am Anfang 0
+	let question = questions[currentQuest];								// currentQuestion ist am Anfang 0
+	// console.log('selected answer is', choice)						loggt den übergebenen Parameter
+	let selectedAnswerNumber = choice.slice(-1);						// gibt die letzte Ziffer vom übergebenen Parameter
+	let idOfRightAnswer = `answer_${question['right_answer']}`; 		// erkennt welche die Richtige Antwort ist
 
-	console.log('selected answer is', choice)				// loggt den übergebenen Parameter
-
-	let selectedAnswerNumber = choice.slice(-1);			// gibt die letzte Ziffer vom übergebenen Parameter
-
-	let idOfRightAnswer = `answer_${question['right_answer']}`; // erkennt welche die Richtige Antwort ist
-
-	if (selectedAnswerNumber == question['right_answer']) {// wenn die letzte Ziffer vom übergebenen Parameter == der richtigen Antwort ist dann "if"
-		document.getElementById(choice).classList.add('bg-success');
+	if (selectedAnswerNumber == question['right_answer']) {				// wenn die letzte Ziffer vom übergebenen Parameter == der richtigen Antwort ist dann "if"
+		document.getElementById(choice).classList.add('bg-success');	//grün für richtige Antwort
 		rightQuestion++;
-
-	} else {												// wenn sie nicht == ist dann "else"
+		audio_success.play();
+	
+	} else {																	// wenn sie nicht == ist dann "else"
 		document.getElementById(choice).classList.add('bg-danger');				// rot makiert weil antwort falsch ist
-		document.getElementById(idOfRightAnswer).classList.add('bg-success'); // makiert die Richtige Antwort, wenn eine falsche gewählt wurde
+		document.getElementById(idOfRightAnswer).classList.add('bg-success'); 	// makiert die Richtige Antwort, wenn eine falsche gewählt wurde
+		audio_fail.play();
 	}
-
-	document.getElementById('next-button').disabled = false;
+	document.getElementById('cover').style = '';								//lässt die div auftauchen, die die antworten abdeckt
+	document.getElementById('next-button').disabled = false;					// der "nächste frage" knopf kann gedrückt werden
 
 }
 
@@ -111,11 +129,14 @@ function nextQuestion() {
 	currentQuest++; 	// erhöht den wert von currentquest um 1
 	displayQuestion();	//	es wird auf das nächste elemnt im Json zugegriffen 
 
-	document.getElementById('next-button').disabled = true;
+	document.getElementById('next-button').disabled = true;	// butten kann wieder nicht gedrückt werden
 
 	HideResults();
 
 }
+
+
+
 
 function HideResults() {
 
@@ -128,14 +149,15 @@ function HideResults() {
 	document.getElementById('answer_4').classList.remove('bg-danger');
 	document.getElementById('answer_4').classList.remove('bg-success');
 
+
 }
 
-function restart(){
+function restart() {
 
-	document.getElementById('quiz-end').style = 'display: none;'; 
-	document.getElementById('quiz-question').style = '';
-	rightQuestion = 0;
+	document.getElementById('quiz-end').style = 'display: none;'; // Endscreen ausblenden	
+	document.getElementById('quiz-question').style = '';		// Question card wieder anzeigen
+	rightQuestion = 0;											// Parameter zurücksetzen
 	currentQuest = 0;
-	init();
+	init();														// Neu laden
 
 }

@@ -90,3 +90,14 @@ flex-flow: row-reverse;
     margin-top: 16px;
 
 }
+
+
+.absolute{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    z-index: 999;
+}

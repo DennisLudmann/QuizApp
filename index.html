@@ -23,9 +23,9 @@
     </div>
   </nav>
   <div class="container container-quiz mt-3">
-
+    
     <div class="card card-quiz" id="quiz-end" style="display: none;">
-
+      
       <div>
        
         <img src="img/italy1.jpg" class="card-img-top img_card"style="height: 20em;">
@@ -41,12 +41,13 @@
           class="btn btn-primary background-blue">Play again!</button></div>
       </div>
      
-     
+    
     </div>
 
 
 
     <div class="card card-quiz" id="quiz-question">
+      <div style="display: none"; id="cover" class="absolute"></div>    <!---the cover over answer container-->
       <img src="img/itay2.jpg" class="card-img-top img_card" alt="...">
       <div class="progress">
         <div id="progress-bar" class="background-blue progress-bar" role="progressbar" ></div>
@@ -56,7 +57,7 @@
         <h5 class="card-title" id="question_text">Frage</h5>
 
         <div class="answer-quiz card mb-2" onclick="answer('answer_1')">
-          <div class=" card-body" id="answer_1">
+          <div disabled=fals; class=" card-body" id="answer_1">
             Antwort 1
           </div>
         </div>
